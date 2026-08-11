@@ -1,0 +1,3741 @@
+{
+  "name": "Proyecto final",
+  "flow": [
+    {
+      "id": 2,
+      "module": "gateway:CustomMailHook",
+      "version": 1,
+      "parameters": {
+        "hook": 0,
+        "maxResults": 1
+      },
+      "mapper": {},
+      "metadata": {
+        "designer": {
+          "x": -181,
+          "y": -7
+        },
+        "restore": {
+          "parameters": {
+            "hook": {
+              "data": {
+                "editable": "false"
+              },
+              "label": "ReqFlow Mailhook"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "hook",
+            "type": "hook:gateway-mailhook",
+            "label": "Mailhook",
+            "required": true
+          },
+          {
+            "name": "maxResults",
+            "type": "number",
+            "label": "Maximum number of results"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "module": "airtable:ActionCreateRecord",
+      "version": 3,
+      "parameters": {
+        "__IMTCONN__": 0
+      },
+      "mapper": {
+        "base": "__AIRTABLE_BASE_ID__",
+        "table": "__AIRTABLE_TABLE_ID__",
+        "record": {
+          "fld4oatfkYttuSvXk": [
+            "Pendiente"
+          ],
+          "fld975JFFw4rhrHRQ": "{{2.text}}",
+          "fldOSJfv0CJ2FP72i": "{{2.from.address}}",
+          "fldXEsU0AzRw8k7oR": "{{2.subject}}",
+          "fldms4B9vJctt3Tpp": "{{2.date}}"
+        },
+        "typecast": false,
+        "useColumnId": false
+      },
+      "metadata": {
+        "designer": {
+          "x": 119,
+          "y": -7
+        },
+        "restore": {
+          "expect": {
+            "base": {
+              "label": "ReqFlow AI – Requerimientos Inteligentes"
+            },
+            "table": {
+              "label": "Requerimientos",
+              "nested": [
+                {
+                  "name": "record",
+                  "spec": [
+                    {
+                      "name": "fldxQMSNpbLohCw4y",
+                      "type": "text",
+                      "label": "ID Requerimiento"
+                    },
+                    {
+                      "name": "fldms4B9vJctt3Tpp",
+                      "time": false,
+                      "type": "date",
+                      "label": "Fecha de recepción"
+                    },
+                    {
+                      "name": "fldOSJfv0CJ2FP72i",
+                      "type": "text",
+                      "label": "Remitente"
+                    },
+                    {
+                      "name": "fldXEsU0AzRw8k7oR",
+                      "type": "text",
+                      "label": "Asunto"
+                    },
+                    {
+                      "name": "fld975JFFw4rhrHRQ",
+                      "type": "text",
+                      "label": "Mensaje Original",
+                      "multiline": true
+                    },
+                    {
+                      "name": "fld4oatfkYttuSvXk",
+                      "spec": {
+                        "mode": "edit",
+                        "type": "select",
+                        "label": "Value",
+                        "dynamic": true,
+                        "options": [
+                          {
+                            "label": "Pendiente",
+                            "value": "Pendiente"
+                          },
+                          {
+                            "label": "Procesado IA",
+                            "value": "Procesado IA"
+                          },
+                          {
+                            "label": "Pendiente HITL",
+                            "value": "Pendiente HITL"
+                          },
+                          {
+                            "label": "Aprobado",
+                            "value": "Aprobado"
+                          },
+                          {
+                            "label": "Rechazado",
+                            "value": "Rechazado"
+                          },
+                          {
+                            "label": "Error",
+                            "value": "Error"
+                          },
+                          {
+                            "label": "",
+                            "value": ""
+                          }
+                        ],
+                        "validate": false
+                      },
+                      "type": "array",
+                      "label": "Estado"
+                    },
+                    {
+                      "name": "fldX5tuO4eebLcC52",
+                      "spec": {
+                        "mode": "edit",
+                        "type": "select",
+                        "label": "Value",
+                        "dynamic": true,
+                        "options": [
+                          {
+                            "label": "Alta",
+                            "value": "Alta"
+                          },
+                          {
+                            "label": "Media",
+                            "value": "Media"
+                          },
+                          {
+                            "label": "Baja",
+                            "value": "Baja"
+                          }
+                        ],
+                        "validate": false
+                      },
+                      "type": "array",
+                      "label": "Prioridad IA"
+                    },
+                    {
+                      "name": "fldcZoM06UnGd8W3m",
+                      "type": "text",
+                      "label": "User Story",
+                      "multiline": true
+                    },
+                    {
+                      "name": "fldLiykMBZezikcwu",
+                      "type": "boolean",
+                      "label": "Aprobado"
+                    },
+                    {
+                      "name": "fld75oZtKz0QJO87m",
+                      "spec": {
+                        "label": "Record ID"
+                      },
+                      "type": "array",
+                      "label": "Áreas"
+                    },
+                    {
+                      "name": "fldQF8oj6G7Al2PYg",
+                      "spec": {
+                        "label": "Record ID"
+                      },
+                      "type": "array",
+                      "label": "Logs"
+                    }
+                  ],
+                  "type": "collection",
+                  "label": "Record"
+                }
+              ]
+            },
+            "record": {
+              "nested": {
+                "fld4oatfkYttuSvXk": {
+                  "mode": "chose",
+                  "items": [
+                    {
+                      "value": {
+                        "mode": "chose",
+                        "label": "Pendiente"
+                      }
+                    }
+                  ]
+                },
+                "fld75oZtKz0QJO87m": {
+                  "mode": "chose"
+                },
+                "fldLiykMBZezikcwu": {
+                  "mode": "chose"
+                },
+                "fldQF8oj6G7Al2PYg": {
+                  "mode": "chose"
+                },
+                "fldX5tuO4eebLcC52": {
+                  "mode": "chose"
+                }
+              }
+            },
+            "typecast": {
+              "mode": "chose"
+            },
+            "useColumnId": {
+              "mode": "chose"
+            }
+          },
+          "parameters": {
+            "__IMTCONN__": {
+              "data": {
+                "scoped": "true",
+                "connection": "airtable3"
+              },
+              "label": "Airtable OAuth connection (User ID: usr_REDACTED)"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "__IMTCONN__",
+            "type": "account:airtable3,airtable2",
+            "label": "Connection",
+            "required": true
+          }
+        ],
+        "expect": [
+          {
+            "name": "base",
+            "type": "select",
+            "label": "Base",
+            "required": true
+          },
+          {
+            "name": "typecast",
+            "type": "boolean",
+            "label": "Smart links",
+            "required": true
+          },
+          {
+            "name": "useColumnId",
+            "type": "boolean",
+            "label": "Use Column ID",
+            "required": true
+          },
+          {
+            "name": "table",
+            "type": "select",
+            "label": "Table",
+            "required": true
+          },
+          {
+            "name": "record",
+            "spec": [
+              {
+                "name": "fldxQMSNpbLohCw4y",
+                "type": "text",
+                "label": "ID Requerimiento"
+              },
+              {
+                "name": "fldms4B9vJctt3Tpp",
+                "time": false,
+                "type": "date",
+                "label": "Fecha de recepción"
+              },
+              {
+                "name": "fldOSJfv0CJ2FP72i",
+                "type": "text",
+                "label": "Remitente"
+              },
+              {
+                "name": "fldXEsU0AzRw8k7oR",
+                "type": "text",
+                "label": "Asunto"
+              },
+              {
+                "name": "fld975JFFw4rhrHRQ",
+                "type": "text",
+                "label": "Mensaje Original"
+              },
+              {
+                "name": "fld4oatfkYttuSvXk",
+                "spec": {
+                  "mode": "edit",
+                  "name": "value",
+                  "type": "select",
+                  "label": "Value",
+                  "dynamic": true,
+                  "options": [
+                    {
+                      "label": "Pendiente",
+                      "value": "Pendiente"
+                    },
+                    {
+                      "label": "Procesado IA",
+                      "value": "Procesado IA"
+                    },
+                    {
+                      "label": "Pendiente HITL",
+                      "value": "Pendiente HITL"
+                    },
+                    {
+                      "label": "Aprobado",
+                      "value": "Aprobado"
+                    },
+                    {
+                      "label": "Rechazado",
+                      "value": "Rechazado"
+                    },
+                    {
+                      "label": "Error",
+                      "value": "Error"
+                    },
+                    {
+                      "label": "",
+                      "value": ""
+                    }
+                  ],
+                  "validate": false
+                },
+                "type": "array",
+                "label": "Estado"
+              },
+              {
+                "name": "fldX5tuO4eebLcC52",
+                "spec": {
+                  "mode": "edit",
+                  "name": "value",
+                  "type": "select",
+                  "label": "Value",
+                  "dynamic": true,
+                  "options": [
+                    {
+                      "label": "Alta",
+                      "value": "Alta"
+                    },
+                    {
+                      "label": "Media",
+                      "value": "Media"
+                    },
+                    {
+                      "label": "Baja",
+                      "value": "Baja"
+                    }
+                  ],
+                  "validate": false
+                },
+                "type": "array",
+                "label": "Prioridad IA"
+              },
+              {
+                "name": "fldcZoM06UnGd8W3m",
+                "type": "text",
+                "label": "User Story"
+              },
+              {
+                "name": "fldLiykMBZezikcwu",
+                "type": "boolean",
+                "label": "Aprobado"
+              },
+              {
+                "name": "fld75oZtKz0QJO87m",
+                "spec": {
+                  "name": "value",
+                  "label": "Record ID"
+                },
+                "type": "array",
+                "label": "Áreas"
+              },
+              {
+                "name": "fldQF8oj6G7Al2PYg",
+                "spec": {
+                  "name": "value",
+                  "label": "Record ID"
+                },
+                "type": "array",
+                "label": "Logs"
+              }
+            ],
+            "type": "collection",
+            "label": "Record"
+          }
+        ],
+        "interface": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "createdTime",
+            "type": "date",
+            "label": "Created Time"
+          },
+          {
+            "name": "ID Requerimiento",
+            "type": "number",
+            "label": "ID Requerimiento"
+          },
+          {
+            "name": "Fecha de recepción",
+            "time": false,
+            "type": "date",
+            "label": "Fecha de recepción"
+          },
+          {
+            "name": "Remitente",
+            "type": "text",
+            "label": "Remitente"
+          },
+          {
+            "name": "Asunto",
+            "type": "text",
+            "label": "Asunto"
+          },
+          {
+            "name": "Mensaje Original",
+            "type": "text",
+            "label": "Mensaje Original",
+            "multiline": true
+          },
+          {
+            "name": "Estado",
+            "type": "array",
+            "label": "Estado",
+            "dynamic": true,
+            "editable": true
+          },
+          {
+            "name": "Prioridad IA",
+            "type": "array",
+            "label": "Prioridad IA",
+            "dynamic": true,
+            "editable": true
+          },
+          {
+            "name": "User Story",
+            "type": "text",
+            "label": "User Story",
+            "multiline": true
+          },
+          {
+            "name": "Aprobado",
+            "type": "boolean",
+            "label": "Aprobado"
+          },
+          {
+            "name": "Áreas",
+            "spec": {
+              "label": "Record ID"
+            },
+            "type": "array",
+            "label": "Áreas"
+          },
+          {
+            "name": "Logs",
+            "spec": {
+              "label": "Record ID"
+            },
+            "type": "array",
+            "label": "Logs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "module": "openai-gpt-3:askAnything",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "model": "gpt-5-mini",
+        "textPrompt": "Actúa como un Product Owner Senior con experiencia en análisis funcional, metodologías ágiles (Scrum) y automatización de procesos de negocio.\n\nTu función es analizar los requerimientos recibidos por correo electrónico para determinar si pueden ingresar al backlog del producto.\n\nAnaliza cuidadosamente el asunto y el contenido del correo antes de responder.\n\nConsidera que un requerimiento está COMPLETO únicamente cuando incluye la mayor parte de la siguiente información:\n- Problema o situación actual.\n- Objetivo del requerimiento.\n- Alcance esperado.\n- Usuarios o área involucrada.\n- Reglas de negocio relevantes (si existen).\n- Resultado esperado o beneficio.\n\nSi falta información esencial para poder desarrollar una User Story correctamente, marca el requerimiento como incompleto e identifica exactamente qué información falta. No inventes información. \n\nClasifica la prioridad utilizando únicamente:\n- Alta\n- Media\n- Baja\n\r\nAsigna la prioridad considerando:\nAlta:\n- Impacta procesos críticos del negocio.\n- Riesgo operativo elevado.\n- Requerimiento urgente.\n\nMedia:\n- Mejora procesos existentes.\n- No bloquea la operación.\n\nBaja:\n- Mejoras menores.\n- Cambios estéticos o solicitudes no críticas.\n\nSi el correo no representa una solicitud funcional (por ejemplo consultas, saludos, agradecimientos, cadenas de correo o mensajes personales), indica que NO corresponde a un requerimiento.\n\nCuando generes la User Story utiliza el formato Scrum:\nComo [rol]\nQuiero [funcionalidad]\nPara [beneficio].\n\nLos criterios de aceptación deben ser claros, verificables y accionables.\n\nPiensa paso a paso antes de responder, pero NO muestres tu razonamiento.\n\nAnaliza el siguiente correo recibido.\r\n\r\nAsunto:\r\n{{2.subject}}\r\n\r\nMensaje:\r\n{{2.text}}\r\n\r\nDevuelve EXCLUSIVAMENTE un JSON válido. No agregues texto antes ni después del JSON.\n\r\nResponde únicamente en formato JSON válido con la siguiente estructura:\r\n\r\n{\r\n  \"es_requerimiento\": true,\r\n  \"esta_completo\": true,\r\n  \"prioridad\": \"Alta\",\r\n  \"user_story\": \"\",\r\n  \"criterios_aceptacion\": [\r\n    \"\",\r\n    \"\",\r\n    \"\",\r\n    \"\"\r\n  ],\r\n  \"datos_faltantes\": [\r\n    \"\"\r\n  ]\r\n}"
+      },
+      "metadata": {
+        "designer": {
+          "x": 419,
+          "y": -7
+        },
+        "restore": {
+          "expect": {
+            "model": {
+              "label": "GPT-5 miniA balanced, quick choice for clearly defined tasks needing reliable answers rather than deep analysis"
+            }
+          }
+        },
+        "expect": [
+          {
+            "name": "model",
+            "type": "select",
+            "label": "Model",
+            "required": true,
+            "validate": {
+              "enum": [
+                "gpt-5.6-sol",
+                "gpt-5.6-terra",
+                "gpt-5.6-luna",
+                "gpt-5.5",
+                "gpt-5.4-nano",
+                "gpt-5.4-mini",
+                "gpt-5.4",
+                "gpt-5.3-chat-latest",
+                "gpt-5.2",
+                "gpt-5.1",
+                "gpt-5",
+                "gpt-5-nano",
+                "gpt-5-mini"
+              ]
+            }
+          },
+          {
+            "name": "textPrompt",
+            "type": "text",
+            "label": "Text prompt",
+            "required": true
+          }
+        ]
+      },
+      "onerror": [
+        {
+          "id": 15,
+          "module": "builtin:Break",
+          "version": 1,
+          "parameters": {},
+          "mapper": {
+            "count": "3",
+            "retry": true,
+            "interval": "15"
+          },
+          "metadata": {
+            "designer": {
+              "x": 422,
+              "y": 307
+            },
+            "restore": {
+              "expect": {
+                "retry": {
+                  "mode": "chose"
+                }
+              }
+            },
+            "expect": [
+              {
+                "name": "retry",
+                "type": "boolean",
+                "label": "Retry automatically",
+                "required": true
+              },
+              {
+                "name": "count",
+                "type": "uinteger",
+                "label": "Number of retries",
+                "required": true,
+                "validate": {
+                  "max": 10000,
+                  "min": 1
+                }
+              },
+              {
+                "name": "interval",
+                "type": "uinteger",
+                "label": "Minutes between retries",
+                "required": true,
+                "validate": {
+                  "max": 44640,
+                  "min": 1
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "module": "json:ParseJSON",
+      "version": 1,
+      "parameters": {
+        "type": 448485
+      },
+      "mapper": {
+        "json": "{{5.result}}"
+      },
+      "metadata": {
+        "designer": {
+          "x": 714,
+          "y": -13
+        },
+        "restore": {
+          "parameters": {
+            "type": {
+              "label": "Parse PO"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "type",
+            "type": "udt",
+            "label": "Data structure"
+          }
+        ],
+        "expect": [
+          {
+            "name": "json",
+            "type": "text",
+            "label": "JSON string",
+            "required": true
+          }
+        ],
+        "interface": [
+          {
+            "help": "",
+            "name": "es_requerimiento",
+            "type": "boolean",
+            "label": "Es requerimiento",
+            "required": false
+          },
+          {
+            "help": "",
+            "name": "esta_completo",
+            "type": "boolean",
+            "label": "Esta completo",
+            "required": false
+          },
+          {
+            "help": "",
+            "name": "prioridad",
+            "type": "text",
+            "label": "Prioridad",
+            "default": null,
+            "required": false,
+            "multiline": false
+          },
+          {
+            "help": "",
+            "name": "resumen",
+            "type": "text",
+            "label": "Resumen",
+            "default": null,
+            "required": false,
+            "multiline": false
+          },
+          {
+            "help": "",
+            "name": "user_story",
+            "type": "text",
+            "label": "User story",
+            "default": null,
+            "required": false,
+            "multiline": false
+          },
+          {
+            "help": "",
+            "name": "criterios_aceptacion",
+            "spec": {
+              "type": "text",
+              "default": null,
+              "required": false,
+              "multiline": false
+            },
+            "type": "array",
+            "label": "Criterios aceptacion",
+            "required": false
+          },
+          {
+            "help": "",
+            "name": "datos_faltantes",
+            "spec": {
+              "type": "text",
+              "default": null,
+              "required": false,
+              "multiline": false
+            },
+            "type": "array",
+            "label": "Datos faltantes",
+            "required": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "module": "airtable:ActionUpdateRecords",
+      "version": 3,
+      "parameters": {
+        "__IMTCONN__": 0
+      },
+      "mapper": {
+        "id": "{{4.id}}",
+        "base": "__AIRTABLE_BASE_ID__",
+        "table": "__AIRTABLE_TABLE_ID__",
+        "record": {
+          "fld4k1o5Ld9JtLarT": "{{6.es_requerimiento}}",
+          "fld4lvSGeyVjS2HV2": "{{6.esta_completo}}",
+          "fld4oatfkYttuSvXk": [
+            "Procesado IA"
+          ],
+          "fld62Nx8YJpDxyhkj": "{{6.datos_faltantes}}",
+          "fldHzd9alExtCwNx5": "{{6.criterios_aceptacion}}",
+          "fldX5tuO4eebLcC52": [
+            "{{6.prioridad}}"
+          ],
+          "fldcZoM06UnGd8W3m": "{{6.user_story}}"
+        },
+        "typecast": false,
+        "useColumnId": false
+      },
+      "metadata": {
+        "designer": {
+          "x": 1019,
+          "y": -7
+        },
+        "restore": {
+          "expect": {
+            "base": {
+              "label": "ReqFlow AI – Requerimientos Inteligentes"
+            },
+            "table": {
+              "label": "Requerimientos"
+            },
+            "record": {
+              "nested": {
+                "fld4oatfkYttuSvXk": {
+                  "mode": "chose",
+                  "items": [
+                    {
+                      "value": {
+                        "mode": "chose",
+                        "label": "Procesado IA"
+                      }
+                    }
+                  ]
+                },
+                "fld75oZtKz0QJO87m": {
+                  "mode": "chose"
+                },
+                "fldLiykMBZezikcwu": {
+                  "mode": "chose"
+                },
+                "fldQF8oj6G7Al2PYg": {
+                  "mode": "chose"
+                },
+                "fldX5tuO4eebLcC52": {
+                  "mode": "chose",
+                  "items": [
+                    {
+                      "value": {
+                        "mode": "edit"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "typecast": {
+              "mode": "chose"
+            },
+            "useColumnId": {
+              "mode": "chose"
+            }
+          },
+          "parameters": {
+            "__IMTCONN__": {
+              "data": {
+                "scoped": "true",
+                "connection": "airtable3"
+              },
+              "label": "Airtable OAuth connection (User ID: usr_REDACTED)"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "__IMTCONN__",
+            "type": "account:airtable3,airtable2",
+            "label": "Connection",
+            "required": true
+          }
+        ],
+        "expect": [
+          {
+            "name": "base",
+            "type": "select",
+            "label": "Base",
+            "required": true
+          },
+          {
+            "name": "typecast",
+            "type": "boolean",
+            "label": "Smart links",
+            "required": true
+          },
+          {
+            "name": "useColumnId",
+            "type": "boolean",
+            "label": "Use Column ID",
+            "required": true
+          },
+          {
+            "name": "table",
+            "type": "select",
+            "label": "Table",
+            "required": true
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Record ID",
+            "required": true
+          },
+          {
+            "name": "record",
+            "spec": [
+              {
+                "name": "fldms4B9vJctt3Tpp",
+                "time": false,
+                "type": "date",
+                "label": "Fecha de recepción"
+              },
+              {
+                "name": "fldOSJfv0CJ2FP72i",
+                "type": "text",
+                "label": "Remitente"
+              },
+              {
+                "name": "fldXEsU0AzRw8k7oR",
+                "type": "text",
+                "label": "Asunto"
+              },
+              {
+                "name": "fld975JFFw4rhrHRQ",
+                "type": "text",
+                "label": "Mensaje Original"
+              },
+              {
+                "name": "fld4oatfkYttuSvXk",
+                "spec": {
+                  "mode": "edit",
+                  "name": "value",
+                  "type": "select",
+                  "label": "Value",
+                  "dynamic": true,
+                  "options": [
+                    {
+                      "label": "Pendiente",
+                      "value": "Pendiente"
+                    },
+                    {
+                      "label": "Procesado IA",
+                      "value": "Procesado IA"
+                    },
+                    {
+                      "label": "Pendiente HITL",
+                      "value": "Pendiente HITL"
+                    },
+                    {
+                      "label": "Aprobado",
+                      "value": "Aprobado"
+                    },
+                    {
+                      "label": "Rechazado",
+                      "value": "Rechazado"
+                    },
+                    {
+                      "label": "Error",
+                      "value": "Error"
+                    },
+                    {
+                      "label": "",
+                      "value": ""
+                    }
+                  ],
+                  "validate": false
+                },
+                "type": "array",
+                "label": "Estado"
+              },
+              {
+                "name": "fld4k1o5Ld9JtLarT",
+                "type": "text",
+                "label": "Es requerimiento?"
+              },
+              {
+                "name": "fld4lvSGeyVjS2HV2",
+                "type": "text",
+                "label": "Requerimiento Completo"
+              },
+              {
+                "name": "fldX5tuO4eebLcC52",
+                "spec": {
+                  "mode": "edit",
+                  "name": "value",
+                  "type": "select",
+                  "label": "Value",
+                  "dynamic": true,
+                  "options": [
+                    {
+                      "label": "Alta",
+                      "value": "Alta"
+                    },
+                    {
+                      "label": "Media",
+                      "value": "Media"
+                    },
+                    {
+                      "label": "Baja",
+                      "value": "Baja"
+                    }
+                  ],
+                  "validate": false
+                },
+                "type": "array",
+                "label": "Prioridad IA"
+              },
+              {
+                "name": "fldcZoM06UnGd8W3m",
+                "type": "text",
+                "label": "User Story"
+              },
+              {
+                "name": "fldHzd9alExtCwNx5",
+                "type": "text",
+                "label": "Criterios de Aceptación"
+              },
+              {
+                "name": "fld62Nx8YJpDxyhkj",
+                "type": "text",
+                "label": "Datos faltantes"
+              },
+              {
+                "name": "fldLiykMBZezikcwu",
+                "type": "boolean",
+                "label": "Aprobado"
+              },
+              {
+                "name": "fld75oZtKz0QJO87m",
+                "spec": {
+                  "name": "value",
+                  "label": "Record ID"
+                },
+                "type": "array",
+                "label": "Áreas"
+              },
+              {
+                "name": "fldQF8oj6G7Al2PYg",
+                "spec": {
+                  "name": "value",
+                  "label": "Record ID"
+                },
+                "type": "array",
+                "label": "Logs"
+              }
+            ],
+            "type": "collection",
+            "label": "Record"
+          }
+        ],
+        "interface": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "createdTime",
+            "type": "date",
+            "label": "Created Time"
+          },
+          {
+            "name": "ID Requerimiento",
+            "type": "number",
+            "label": "ID Requerimiento"
+          },
+          {
+            "name": "Fecha de recepción",
+            "time": false,
+            "type": "date",
+            "label": "Fecha de recepción"
+          },
+          {
+            "name": "Remitente",
+            "type": "text",
+            "label": "Remitente"
+          },
+          {
+            "name": "Asunto",
+            "type": "text",
+            "label": "Asunto"
+          },
+          {
+            "name": "Mensaje Original",
+            "type": "text",
+            "label": "Mensaje Original",
+            "multiline": true
+          },
+          {
+            "name": "Estado",
+            "type": "array",
+            "label": "Estado",
+            "dynamic": true,
+            "editable": true
+          },
+          {
+            "name": "Es requerimiento?",
+            "type": "text",
+            "label": "Es requerimiento?"
+          },
+          {
+            "name": "Requerimiento Completo",
+            "type": "text",
+            "label": "Requerimiento Completo"
+          },
+          {
+            "name": "Prioridad IA",
+            "type": "array",
+            "label": "Prioridad IA",
+            "dynamic": true,
+            "editable": true
+          },
+          {
+            "name": "User Story",
+            "type": "text",
+            "label": "User Story",
+            "multiline": true
+          },
+          {
+            "name": "Criterios de Aceptación",
+            "type": "text",
+            "label": "Criterios de Aceptación",
+            "multiline": true
+          },
+          {
+            "name": "Datos faltantes",
+            "type": "text",
+            "label": "Datos faltantes",
+            "multiline": true
+          },
+          {
+            "name": "Aprobado",
+            "type": "boolean",
+            "label": "Aprobado"
+          },
+          {
+            "name": "Áreas",
+            "spec": {
+              "label": "Record ID"
+            },
+            "type": "array",
+            "label": "Áreas"
+          },
+          {
+            "name": "Logs",
+            "spec": {
+              "label": "Record ID"
+            },
+            "type": "array",
+            "label": "Logs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "module": "builtin:BasicRouter",
+      "version": 1,
+      "mapper": null,
+      "metadata": {
+        "designer": {
+          "x": 1319,
+          "y": -7
+        }
+      },
+      "routes": [
+        {
+          "flow": [
+            {
+              "id": 9,
+              "module": "airtable:ActionUpdateRecords",
+              "version": 3,
+              "parameters": {
+                "__IMTCONN__": 0
+              },
+              "filter": {
+                "name": "Req. Completo",
+                "conditions": [
+                  [
+                    {
+                      "a": "{{7.`Es requerimiento?`}}",
+                      "b": "true",
+                      "o": "text:equal"
+                    },
+                    {
+                      "a": "{{7.`Requerimiento Completo`}}",
+                      "b": "true",
+                      "o": "text:equal"
+                    }
+                  ]
+                ]
+              },
+              "mapper": {
+                "id": "{{4.id}}",
+                "base": "__AIRTABLE_BASE_ID__",
+                "table": "__AIRTABLE_TABLE_ID__",
+                "record": {
+                  "fld4oatfkYttuSvXk": [
+                    "Pendiente HITL"
+                  ]
+                },
+                "typecast": false,
+                "useColumnId": false
+              },
+              "metadata": {
+                "designer": {
+                  "x": 1619,
+                  "y": -307
+                },
+                "restore": {
+                  "expect": {
+                    "base": {
+                      "label": "ReqFlow AI – Requerimientos Inteligentes"
+                    },
+                    "table": {
+                      "label": "Requerimientos"
+                    },
+                    "record": {
+                      "nested": {
+                        "fld4k1o5Ld9JtLarT": {
+                          "mode": "chose"
+                        },
+                        "fld4lvSGeyVjS2HV2": {
+                          "mode": "chose"
+                        },
+                        "fld4oatfkYttuSvXk": {
+                          "mode": "chose",
+                          "items": [
+                            {
+                              "value": {
+                                "mode": "chose",
+                                "label": "Pendiente HITL"
+                              }
+                            }
+                          ]
+                        },
+                        "fld75oZtKz0QJO87m": {
+                          "mode": "chose"
+                        },
+                        "fldLiykMBZezikcwu": {
+                          "mode": "chose"
+                        },
+                        "fldQF8oj6G7Al2PYg": {
+                          "mode": "chose"
+                        },
+                        "fldX5tuO4eebLcC52": {
+                          "mode": "chose"
+                        }
+                      }
+                    },
+                    "typecast": {
+                      "mode": "chose"
+                    },
+                    "useColumnId": {
+                      "mode": "chose"
+                    }
+                  },
+                  "parameters": {
+                    "__IMTCONN__": {
+                      "data": {
+                        "scoped": "true",
+                        "connection": "airtable3"
+                      },
+                      "label": "Airtable OAuth connection (User ID: usr_REDACTED)"
+                    }
+                  }
+                },
+                "parameters": [
+                  {
+                    "name": "__IMTCONN__",
+                    "type": "account:airtable3,airtable2",
+                    "label": "Connection",
+                    "required": true
+                  }
+                ],
+                "expect": [
+                  {
+                    "name": "base",
+                    "type": "select",
+                    "label": "Base",
+                    "required": true
+                  },
+                  {
+                    "name": "typecast",
+                    "type": "boolean",
+                    "label": "Smart links",
+                    "required": true
+                  },
+                  {
+                    "name": "useColumnId",
+                    "type": "boolean",
+                    "label": "Use Column ID",
+                    "required": true
+                  },
+                  {
+                    "name": "table",
+                    "type": "select",
+                    "label": "Table",
+                    "required": true
+                  },
+                  {
+                    "name": "id",
+                    "type": "text",
+                    "label": "Record ID",
+                    "required": true
+                  },
+                  {
+                    "name": "record",
+                    "spec": [
+                      {
+                        "name": "fldms4B9vJctt3Tpp",
+                        "time": false,
+                        "type": "date",
+                        "label": "Fecha de recepción"
+                      },
+                      {
+                        "name": "fldOSJfv0CJ2FP72i",
+                        "type": "text",
+                        "label": "Remitente"
+                      },
+                      {
+                        "name": "fldXEsU0AzRw8k7oR",
+                        "type": "text",
+                        "label": "Asunto"
+                      },
+                      {
+                        "name": "fld975JFFw4rhrHRQ",
+                        "type": "text",
+                        "label": "Mensaje Original"
+                      },
+                      {
+                        "name": "fld4oatfkYttuSvXk",
+                        "spec": {
+                          "mode": "edit",
+                          "name": "value",
+                          "type": "select",
+                          "label": "Value",
+                          "dynamic": true,
+                          "options": [
+                            {
+                              "label": "Pendiente",
+                              "value": "Pendiente"
+                            },
+                            {
+                              "label": "Procesado IA",
+                              "value": "Procesado IA"
+                            },
+                            {
+                              "label": "Pendiente HITL",
+                              "value": "Pendiente HITL"
+                            },
+                            {
+                              "label": "Aprobado",
+                              "value": "Aprobado"
+                            },
+                            {
+                              "label": "Rechazado",
+                              "value": "Rechazado"
+                            },
+                            {
+                              "label": "Error",
+                              "value": "Error"
+                            },
+                            {
+                              "label": "No corresponde",
+                              "value": "No corresponde"
+                            },
+                            {
+                              "label": "Datos incompletos",
+                              "value": "Datos incompletos"
+                            }
+                          ],
+                          "validate": false
+                        },
+                        "type": "array",
+                        "label": "Estado"
+                      },
+                      {
+                        "name": "fld4k1o5Ld9JtLarT",
+                        "type": "boolean",
+                        "label": "Es requerimiento?"
+                      },
+                      {
+                        "name": "fld4lvSGeyVjS2HV2",
+                        "type": "boolean",
+                        "label": "Requerimiento Completo"
+                      },
+                      {
+                        "name": "fldX5tuO4eebLcC52",
+                        "spec": {
+                          "mode": "edit",
+                          "name": "value",
+                          "type": "select",
+                          "label": "Value",
+                          "dynamic": true,
+                          "options": [
+                            {
+                              "label": "Alta",
+                              "value": "Alta"
+                            },
+                            {
+                              "label": "Media",
+                              "value": "Media"
+                            },
+                            {
+                              "label": "Baja",
+                              "value": "Baja"
+                            }
+                          ],
+                          "validate": false
+                        },
+                        "type": "array",
+                        "label": "Prioridad IA"
+                      },
+                      {
+                        "name": "fldcZoM06UnGd8W3m",
+                        "type": "text",
+                        "label": "User Story"
+                      },
+                      {
+                        "name": "fldHzd9alExtCwNx5",
+                        "type": "text",
+                        "label": "Criterios de Aceptación"
+                      },
+                      {
+                        "name": "fld62Nx8YJpDxyhkj",
+                        "type": "text",
+                        "label": "Datos faltantes"
+                      },
+                      {
+                        "name": "fldLiykMBZezikcwu",
+                        "type": "boolean",
+                        "label": "Aprobado"
+                      },
+                      {
+                        "name": "fld75oZtKz0QJO87m",
+                        "spec": {
+                          "name": "value",
+                          "label": "Record ID"
+                        },
+                        "type": "array",
+                        "label": "Áreas"
+                      },
+                      {
+                        "name": "fldQF8oj6G7Al2PYg",
+                        "spec": {
+                          "name": "value",
+                          "label": "Record ID"
+                        },
+                        "type": "array",
+                        "label": "Logs"
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "Record"
+                  }
+                ],
+                "interface": [
+                  {
+                    "name": "id",
+                    "type": "text",
+                    "label": "ID"
+                  },
+                  {
+                    "name": "createdTime",
+                    "type": "date",
+                    "label": "Created Time"
+                  },
+                  {
+                    "name": "ID Requerimiento",
+                    "type": "number",
+                    "label": "ID Requerimiento"
+                  },
+                  {
+                    "name": "Fecha de recepción",
+                    "time": false,
+                    "type": "date",
+                    "label": "Fecha de recepción"
+                  },
+                  {
+                    "name": "Remitente",
+                    "type": "text",
+                    "label": "Remitente"
+                  },
+                  {
+                    "name": "Asunto",
+                    "type": "text",
+                    "label": "Asunto"
+                  },
+                  {
+                    "name": "Mensaje Original",
+                    "type": "text",
+                    "label": "Mensaje Original",
+                    "multiline": true
+                  },
+                  {
+                    "name": "Estado",
+                    "type": "array",
+                    "label": "Estado",
+                    "dynamic": true,
+                    "editable": true
+                  },
+                  {
+                    "name": "Es requerimiento?",
+                    "type": "boolean",
+                    "label": "Es requerimiento?"
+                  },
+                  {
+                    "name": "Requerimiento Completo",
+                    "type": "boolean",
+                    "label": "Requerimiento Completo"
+                  },
+                  {
+                    "name": "Prioridad IA",
+                    "type": "array",
+                    "label": "Prioridad IA",
+                    "dynamic": true,
+                    "editable": true
+                  },
+                  {
+                    "name": "User Story",
+                    "type": "text",
+                    "label": "User Story",
+                    "multiline": true
+                  },
+                  {
+                    "name": "Criterios de Aceptación",
+                    "type": "text",
+                    "label": "Criterios de Aceptación",
+                    "multiline": true
+                  },
+                  {
+                    "name": "Datos faltantes",
+                    "type": "text",
+                    "label": "Datos faltantes",
+                    "multiline": true
+                  },
+                  {
+                    "name": "Aprobado",
+                    "type": "boolean",
+                    "label": "Aprobado"
+                  },
+                  {
+                    "name": "Áreas",
+                    "spec": {
+                      "label": "Record ID"
+                    },
+                    "type": "array",
+                    "label": "Áreas"
+                  },
+                  {
+                    "name": "Logs",
+                    "spec": {
+                      "label": "Record ID"
+                    },
+                    "type": "array",
+                    "label": "Logs"
+                  }
+                ]
+              }
+            },
+            {
+              "id": 14,
+              "module": "telegram:SendReplyMessage",
+              "version": 1,
+              "parameters": {
+                "__IMTCONN__": 0
+              },
+              "mapper": {
+                "text": "🔎 APROBACIÓN REQUERIDA\n\nID: {{9.`ID Requerimiento`}}\n\nAsunto:{{9.Asunto}}\n\nPrioridad:{{9.`Prioridad IA`}}\n\nUser Story:{{9.`User Story`}}\n\n¿Aprobás este requerimiento?",
+                "chatId": "__TELEGRAM_CHAT_ID__",
+                "parseMode": "",
+                "replyMarkup": "{\n  \"inline_keyboard\": [\n    [\n      {\n        \"text\": \"✅ Aprobar\",\n        \"callback_data\": \"aprobar_{{9.id}}\"\n      },\n      {\n        \"text\": \"❌ Rechazar\",\n        \"callback_data\": \"rechazar_{{9.id}}\"\n      }\n    ]\n  ]\n}",
+                "messageThreadId": "",
+                "replyToMessageId": "",
+                "replyMarkupAssembleType": "reply_markup_enter"
+              },
+              "metadata": {
+                "designer": {
+                  "x": 1886,
+                  "y": -320
+                },
+                "restore": {
+                  "expect": {
+                    "parseMode": {
+                      "label": "Empty"
+                    },
+                    "disableNotification": {
+                      "mode": "chose"
+                    },
+                    "replyMarkupAssembleType": {
+                      "label": "Enter the Reply Markup"
+                    }
+                  },
+                  "parameters": {
+                    "__IMTCONN__": {
+                      "data": {
+                        "scoped": "true",
+                        "connection": "telegram"
+                      },
+                      "label": "PRODUCT OWNER"
+                    }
+                  }
+                },
+                "parameters": [
+                  {
+                    "name": "__IMTCONN__",
+                    "type": "account:telegram",
+                    "label": "Connection",
+                    "required": true
+                  }
+                ],
+                "expect": [
+                  {
+                    "name": "chatId",
+                    "type": "text",
+                    "label": "Chat ID",
+                    "required": true
+                  },
+                  {
+                    "name": "text",
+                    "type": "text",
+                    "label": "Text",
+                    "required": true
+                  },
+                  {
+                    "name": "messageThreadId",
+                    "type": "number",
+                    "label": "Message Thread ID"
+                  },
+                  {
+                    "name": "parseMode",
+                    "type": "select",
+                    "label": "Parse Mode",
+                    "validate": {
+                      "enum": [
+                        "Markdown",
+                        "HTML"
+                      ]
+                    }
+                  },
+                  {
+                    "name": "disableNotification",
+                    "type": "boolean",
+                    "label": "Disable Notifications"
+                  },
+                  {
+                    "name": "disableWebPagePreview",
+                    "type": "boolean",
+                    "label": "Disable Link Previews"
+                  },
+                  {
+                    "name": "replyToMessageId",
+                    "type": "number",
+                    "label": "Original Message ID"
+                  },
+                  {
+                    "name": "replyMarkupAssembleType",
+                    "type": "select",
+                    "label": "Enter/Assemble the Reply Markup Field",
+                    "validate": {
+                      "enum": [
+                        "reply_markup_enter",
+                        "reply_markup_assemble"
+                      ]
+                    }
+                  },
+                  {
+                    "name": "replyMarkup",
+                    "type": "text",
+                    "label": "Reply Markup"
+                  }
+                ],
+                "advanced": true
+              }
+            },
+            {
+              "id": 33,
+              "module": "util:FunctionSleep",
+              "version": 1,
+              "parameters": {},
+              "mapper": {
+                "duration": "60"
+              },
+              "metadata": {
+                "designer": {
+                  "x": 2121,
+                  "y": -315
+                },
+                "restore": {},
+                "expect": [
+                  {
+                    "name": "duration",
+                    "type": "uinteger",
+                    "label": "Delay",
+                    "required": true,
+                    "validate": {
+                      "max": 300,
+                      "min": 1
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "id": 23,
+              "module": "telegram:GetUpdates",
+              "version": 1,
+              "parameters": {
+                "__IMTCONN__": 0
+              },
+              "mapper": {
+                "limit": "10",
+                "offset": "",
+                "isToUseAutopaging": true
+              },
+              "metadata": {
+                "designer": {
+                  "x": 2374,
+                  "y": -313
+                },
+                "restore": {
+                  "parameters": {
+                    "__IMTCONN__": {
+                      "data": {
+                        "scoped": "true",
+                        "connection": "telegram"
+                      },
+                      "label": "PRODUCT OWNER"
+                    }
+                  }
+                },
+                "parameters": [
+                  {
+                    "name": "__IMTCONN__",
+                    "type": "account:telegram",
+                    "label": "Connection",
+                    "required": true
+                  }
+                ],
+                "expect": [
+                  {
+                    "name": "offset",
+                    "type": "number",
+                    "label": "Start offset (Update ID)"
+                  },
+                  {
+                    "name": "limit",
+                    "type": "number",
+                    "label": "Limit"
+                  },
+                  {
+                    "name": "isToUseAutopaging",
+                    "type": "boolean",
+                    "label": "Confirm processed requests by increasing the offset in the Telegram server [auto-paging]",
+                    "required": true
+                  }
+                ]
+              }
+            },
+            {
+              "id": 24,
+              "module": "builtin:BasicRouter",
+              "version": 1,
+              "mapper": null,
+              "metadata": {
+                "designer": {
+                  "x": 2623,
+                  "y": -324
+                }
+              },
+              "routes": [
+                {
+                  "flow": [
+                    {
+                      "id": 28,
+                      "module": "airtable:ActionUpdateRecords",
+                      "version": 3,
+                      "parameters": {
+                        "__IMTCONN__": 0
+                      },
+                      "filter": {
+                        "name": "Aprobar",
+                        "conditions": [
+                          [
+                            {
+                              "a": "{{23.callback_query.data}}",
+                              "b": "aprobar_",
+                              "o": "text:startwith"
+                            }
+                          ]
+                        ]
+                      },
+                      "mapper": {
+                        "id": "{{substring(23.callback_query.data; 8; length(23.callback_query.data))}}",
+                        "base": "__AIRTABLE_BASE_ID__",
+                        "table": "__AIRTABLE_TABLE_ID__",
+                        "record": {
+                          "fld4oatfkYttuSvXk": [
+                            "Aprobado"
+                          ],
+                          "fldLiykMBZezikcwu": "Si"
+                        },
+                        "typecast": false,
+                        "useColumnId": false
+                      },
+                      "metadata": {
+                        "designer": {
+                          "x": 2815,
+                          "y": -519
+                        },
+                        "restore": {
+                          "expect": {
+                            "base": {
+                              "label": "ReqFlow AI – Requerimientos Inteligentes"
+                            },
+                            "table": {
+                              "label": "Requerimientos"
+                            },
+                            "record": {
+                              "nested": {
+                                "fld4oatfkYttuSvXk": {
+                                  "mode": "chose",
+                                  "items": [
+                                    {
+                                      "value": {
+                                        "mode": "chose",
+                                        "label": "Aprobado"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "fldX5tuO4eebLcC52": {
+                                  "mode": "chose"
+                                }
+                              }
+                            },
+                            "typecast": {
+                              "mode": "chose"
+                            },
+                            "useColumnId": {
+                              "mode": "chose"
+                            }
+                          },
+                          "parameters": {
+                            "__IMTCONN__": {
+                              "data": {
+                                "scoped": "true",
+                                "connection": "airtable3"
+                              },
+                              "label": "Airtable OAuth connection (User ID: usr_REDACTED)"
+                            }
+                          }
+                        },
+                        "parameters": [
+                          {
+                            "name": "__IMTCONN__",
+                            "type": "account:airtable3,airtable2",
+                            "label": "Connection",
+                            "required": true
+                          }
+                        ],
+                        "expect": [
+                          {
+                            "name": "base",
+                            "type": "select",
+                            "label": "Base",
+                            "required": true
+                          },
+                          {
+                            "name": "typecast",
+                            "type": "boolean",
+                            "label": "Smart links",
+                            "required": true
+                          },
+                          {
+                            "name": "useColumnId",
+                            "type": "boolean",
+                            "label": "Use Column ID",
+                            "required": true
+                          },
+                          {
+                            "name": "table",
+                            "type": "select",
+                            "label": "Table",
+                            "required": true
+                          },
+                          {
+                            "name": "id",
+                            "type": "text",
+                            "label": "Record ID",
+                            "required": true
+                          },
+                          {
+                            "name": "record",
+                            "spec": [
+                              {
+                                "name": "fldms4B9vJctt3Tpp",
+                                "time": false,
+                                "type": "date",
+                                "label": "Fecha de recepción"
+                              },
+                              {
+                                "name": "fldOSJfv0CJ2FP72i",
+                                "type": "text",
+                                "label": "Remitente"
+                              },
+                              {
+                                "name": "fldXEsU0AzRw8k7oR",
+                                "type": "text",
+                                "label": "Asunto"
+                              },
+                              {
+                                "name": "fld975JFFw4rhrHRQ",
+                                "type": "text",
+                                "label": "Mensaje Original"
+                              },
+                              {
+                                "name": "fld4oatfkYttuSvXk",
+                                "spec": {
+                                  "mode": "edit",
+                                  "name": "value",
+                                  "type": "select",
+                                  "label": "Value",
+                                  "dynamic": true,
+                                  "options": [
+                                    {
+                                      "label": "Pendiente",
+                                      "value": "Pendiente"
+                                    },
+                                    {
+                                      "label": "Procesado IA",
+                                      "value": "Procesado IA"
+                                    },
+                                    {
+                                      "label": "Pendiente HITL",
+                                      "value": "Pendiente HITL"
+                                    },
+                                    {
+                                      "label": "Aprobado",
+                                      "value": "Aprobado"
+                                    },
+                                    {
+                                      "label": "Rechazado",
+                                      "value": "Rechazado"
+                                    },
+                                    {
+                                      "label": "Error",
+                                      "value": "Error"
+                                    },
+                                    {
+                                      "label": "No corresponde",
+                                      "value": "No corresponde"
+                                    },
+                                    {
+                                      "label": "Datos incompletos",
+                                      "value": "Datos incompletos"
+                                    }
+                                  ],
+                                  "validate": false
+                                },
+                                "type": "array",
+                                "label": "Estado"
+                              },
+                              {
+                                "name": "fld4k1o5Ld9JtLarT",
+                                "type": "text",
+                                "label": "Es requerimiento?"
+                              },
+                              {
+                                "name": "fld4lvSGeyVjS2HV2",
+                                "type": "text",
+                                "label": "Requerimiento Completo"
+                              },
+                              {
+                                "name": "fldX5tuO4eebLcC52",
+                                "spec": {
+                                  "mode": "edit",
+                                  "name": "value",
+                                  "type": "select",
+                                  "label": "Value",
+                                  "dynamic": true,
+                                  "options": [
+                                    {
+                                      "label": "Alta",
+                                      "value": "Alta"
+                                    },
+                                    {
+                                      "label": "Media",
+                                      "value": "Media"
+                                    },
+                                    {
+                                      "label": "Baja",
+                                      "value": "Baja"
+                                    }
+                                  ],
+                                  "validate": false
+                                },
+                                "type": "array",
+                                "label": "Prioridad IA"
+                              },
+                              {
+                                "name": "fldcZoM06UnGd8W3m",
+                                "type": "text",
+                                "label": "User Story"
+                              },
+                              {
+                                "name": "fldHzd9alExtCwNx5",
+                                "type": "text",
+                                "label": "Criterios de Aceptación"
+                              },
+                              {
+                                "name": "fld62Nx8YJpDxyhkj",
+                                "type": "text",
+                                "label": "Datos faltantes"
+                              },
+                              {
+                                "name": "fldLiykMBZezikcwu",
+                                "type": "text",
+                                "label": "Aprobado"
+                              }
+                            ],
+                            "type": "collection",
+                            "label": "Record"
+                          }
+                        ],
+                        "interface": [
+                          {
+                            "name": "id",
+                            "type": "text",
+                            "label": "ID"
+                          },
+                          {
+                            "name": "createdTime",
+                            "type": "date",
+                            "label": "Created Time"
+                          },
+                          {
+                            "name": "ID Requerimiento",
+                            "type": "number",
+                            "label": "ID Requerimiento"
+                          },
+                          {
+                            "name": "Fecha de recepción",
+                            "time": false,
+                            "type": "date",
+                            "label": "Fecha de recepción"
+                          },
+                          {
+                            "name": "Remitente",
+                            "type": "text",
+                            "label": "Remitente"
+                          },
+                          {
+                            "name": "Asunto",
+                            "type": "text",
+                            "label": "Asunto"
+                          },
+                          {
+                            "name": "Mensaje Original",
+                            "type": "text",
+                            "label": "Mensaje Original",
+                            "multiline": true
+                          },
+                          {
+                            "name": "Estado",
+                            "type": "array",
+                            "label": "Estado",
+                            "dynamic": true,
+                            "editable": true
+                          },
+                          {
+                            "name": "Es requerimiento?",
+                            "type": "text",
+                            "label": "Es requerimiento?"
+                          },
+                          {
+                            "name": "Requerimiento Completo",
+                            "type": "text",
+                            "label": "Requerimiento Completo"
+                          },
+                          {
+                            "name": "Prioridad IA",
+                            "type": "array",
+                            "label": "Prioridad IA",
+                            "dynamic": true,
+                            "editable": true
+                          },
+                          {
+                            "name": "User Story",
+                            "type": "text",
+                            "label": "User Story",
+                            "multiline": true
+                          },
+                          {
+                            "name": "Criterios de Aceptación",
+                            "type": "text",
+                            "label": "Criterios de Aceptación",
+                            "multiline": true
+                          },
+                          {
+                            "name": "Datos faltantes",
+                            "type": "text",
+                            "label": "Datos faltantes",
+                            "multiline": true
+                          },
+                          {
+                            "name": "Aprobado",
+                            "type": "text",
+                            "label": "Aprobado"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": 32,
+                      "module": "google-email:sendAnEmail",
+                      "version": 4,
+                      "parameters": {
+                        "__IMTCONN__": 0
+                      },
+                      "filter": {
+                        "name": "Only continue when mapped value exists",
+                        "conditions": [
+                          [
+                            {
+                              "a": "{{4.Remitente}}",
+                              "o": "exist"
+                            }
+                          ]
+                        ]
+                      },
+                      "mapper": {
+                        "to": [
+                          "{{4.Remitente}}"
+                        ],
+                        "content": "<div style=\"font-family: Arial, sans-serif; font-size: 14px; line-height: 1.6;\">\r\n\r\n<h2>✅ Requerimiento aprobado</h2>\r\n\r\n<p>Hola,</p>\r\n\r\n<p>\r\nTu requerimiento <strong>\"{{28.Asunto}}\"</strong> fue analizado por nuestro sistema de IA y posteriormente validado por el responsable del proceso.\r\n</p>\r\n\r\n<p>\r\n<strong>Estado:</strong> APROBADO<br>\r\n<strong>Prioridad:</strong> {{28.`Prioridad IA`}}\r\n</p>\r\n\r\n<hr>\r\n\r\n<p><strong>📋 User Story</strong></p>\r\n\r\n<p>{{28.`User Story`}}</p>\r\n\r\n<p><strong>🎯 Criterios de aceptación</strong></p>\r\n\r\n<p>{{28.`Criterios de Aceptación`}}</p>\r\n\r\n<hr>\r\n\r\n<p>\r\nEl requerimiento continuará con el proceso correspondiente.\r\n</p>\r\n\r\n<p>\r\nSaludos,<br>\r\n<strong>ReqFlow AI</strong><br>\r\n<em>Sistema Inteligente de Gestión de Requerimientos</em>\r\n</p>\r\n\r\n</div>",
+                        "subject": "Requerimiento aprobado: ID Nr. {{4.`ID Requerimiento`}}",
+                        "bodyType": "rawHtml"
+                      },
+                      "metadata": {
+                        "designer": {
+                          "x": 3147,
+                          "y": -528
+                        },
+                        "restore": {
+                          "expect": {
+                            "cc": {
+                              "mode": "chose"
+                            },
+                            "to": {
+                              "mode": "chose",
+                              "items": [
+                                null
+                              ]
+                            },
+                            "bcc": {
+                              "mode": "chose"
+                            },
+                            "from": {
+                              "mode": "chose"
+                            },
+                            "bodyType": {
+                              "label": "Raw HTML"
+                            },
+                            "attachments": {
+                              "mode": "chose"
+                            },
+                            "emailHeaders": {
+                              "mode": "chose"
+                            }
+                          },
+                          "parameters": {
+                            "__IMTCONN__": {
+                              "data": {
+                                "scoped": "true",
+                                "connection": "google-email"
+                              },
+                              "label": "Gmail connection (usuario@example.com)"
+                            }
+                          }
+                        },
+                        "parameters": [
+                          {
+                            "name": "__IMTCONN__",
+                            "type": "account:google-email",
+                            "label": "Connection",
+                            "required": true
+                          }
+                        ],
+                        "expect": [
+                          {
+                            "name": "to",
+                            "spec": {
+                              "name": "value",
+                              "type": "email",
+                              "label": "Recipient email address",
+                              "required": true,
+                              "validate": true
+                            },
+                            "type": "array",
+                            "label": "To",
+                            "required": true
+                          },
+                          {
+                            "name": "subject",
+                            "type": "text",
+                            "label": "Subject"
+                          },
+                          {
+                            "name": "bodyType",
+                            "type": "select",
+                            "label": "Body type",
+                            "required": true,
+                            "validate": {
+                              "enum": [
+                                "rawHtml",
+                                "collection"
+                              ]
+                            }
+                          },
+                          {
+                            "name": "attachments",
+                            "spec": {
+                              "name": "value",
+                              "spec": [
+                                {
+                                  "name": "filename",
+                                  "type": "filename",
+                                  "label": "File name",
+                                  "required": true,
+                                  "semantic": "file:name"
+                                },
+                                {
+                                  "name": "data",
+                                  "type": "buffer",
+                                  "label": "Data",
+                                  "required": true,
+                                  "semantic": "file:data"
+                                }
+                              ],
+                              "type": "collection",
+                              "label": "Attachment"
+                            },
+                            "type": "array",
+                            "label": "Attachments"
+                          },
+                          {
+                            "name": "from",
+                            "type": "select",
+                            "label": "From"
+                          },
+                          {
+                            "name": "cc",
+                            "spec": {
+                              "name": "value",
+                              "type": "email",
+                              "label": "Recipient email address"
+                            },
+                            "type": "array",
+                            "label": "CC recipients"
+                          },
+                          {
+                            "name": "bcc",
+                            "spec": {
+                              "name": "value",
+                              "type": "email",
+                              "label": "Recipient email address"
+                            },
+                            "type": "array",
+                            "label": "BCC recipients"
+                          },
+                          {
+                            "name": "emailHeaders",
+                            "spec": {
+                              "name": "value",
+                              "spec": [
+                                {
+                                  "name": "key",
+                                  "type": "text",
+                                  "label": "Key",
+                                  "required": true
+                                },
+                                {
+                                  "name": "value",
+                                  "type": "text",
+                                  "label": "Value"
+                                }
+                              ],
+                              "type": "collection",
+                              "label": "Email header"
+                            },
+                            "type": "array",
+                            "label": "Additional email headers"
+                          },
+                          {
+                            "name": "content",
+                            "type": "text",
+                            "label": "Content"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "flow": [
+                    {
+                      "id": 30,
+                      "module": "airtable:ActionUpdateRecords",
+                      "version": 3,
+                      "parameters": {
+                        "__IMTCONN__": 0
+                      },
+                      "filter": {
+                        "name": "Rechazar",
+                        "conditions": [
+                          [
+                            {
+                              "a": "{{23.callback_query.data}}",
+                              "b": "rechazar_",
+                              "o": "text:startwith"
+                            }
+                          ]
+                        ]
+                      },
+                      "mapper": {
+                        "id": "{{substring(23.callback_query.data; 9; length(23.callback_query.data))}}",
+                        "base": "__AIRTABLE_BASE_ID__",
+                        "table": "__AIRTABLE_TABLE_ID__",
+                        "record": {
+                          "fld4oatfkYttuSvXk": [
+                            "Rechazado"
+                          ],
+                          "fldLiykMBZezikcwu": "No"
+                        },
+                        "typecast": false,
+                        "useColumnId": false
+                      },
+                      "metadata": {
+                        "designer": {
+                          "x": 2819,
+                          "y": -146
+                        },
+                        "restore": {
+                          "expect": {
+                            "base": {
+                              "label": "ReqFlow AI – Requerimientos Inteligentes"
+                            },
+                            "table": {
+                              "label": "Requerimientos"
+                            },
+                            "record": {
+                              "nested": {
+                                "fld4oatfkYttuSvXk": {
+                                  "mode": "chose",
+                                  "items": [
+                                    {
+                                      "value": {
+                                        "mode": "chose",
+                                        "label": "Rechazado"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "fldX5tuO4eebLcC52": {
+                                  "mode": "chose"
+                                }
+                              }
+                            },
+                            "typecast": {
+                              "mode": "chose"
+                            },
+                            "useColumnId": {
+                              "mode": "chose"
+                            }
+                          },
+                          "parameters": {
+                            "__IMTCONN__": {
+                              "data": {
+                                "scoped": "true",
+                                "connection": "airtable3"
+                              },
+                              "label": "Airtable OAuth connection (User ID: usr_REDACTED)"
+                            }
+                          }
+                        },
+                        "parameters": [
+                          {
+                            "name": "__IMTCONN__",
+                            "type": "account:airtable3,airtable2",
+                            "label": "Connection",
+                            "required": true
+                          }
+                        ],
+                        "expect": [
+                          {
+                            "name": "base",
+                            "type": "select",
+                            "label": "Base",
+                            "required": true
+                          },
+                          {
+                            "name": "typecast",
+                            "type": "boolean",
+                            "label": "Smart links",
+                            "required": true
+                          },
+                          {
+                            "name": "useColumnId",
+                            "type": "boolean",
+                            "label": "Use Column ID",
+                            "required": true
+                          },
+                          {
+                            "name": "table",
+                            "type": "select",
+                            "label": "Table",
+                            "required": true
+                          },
+                          {
+                            "name": "id",
+                            "type": "text",
+                            "label": "Record ID",
+                            "required": true
+                          },
+                          {
+                            "name": "record",
+                            "spec": [
+                              {
+                                "name": "fldms4B9vJctt3Tpp",
+                                "time": false,
+                                "type": "date",
+                                "label": "Fecha de recepción"
+                              },
+                              {
+                                "name": "fldOSJfv0CJ2FP72i",
+                                "type": "text",
+                                "label": "Remitente"
+                              },
+                              {
+                                "name": "fldXEsU0AzRw8k7oR",
+                                "type": "text",
+                                "label": "Asunto"
+                              },
+                              {
+                                "name": "fld975JFFw4rhrHRQ",
+                                "type": "text",
+                                "label": "Mensaje Original"
+                              },
+                              {
+                                "name": "fld4oatfkYttuSvXk",
+                                "spec": {
+                                  "mode": "edit",
+                                  "name": "value",
+                                  "type": "select",
+                                  "label": "Value",
+                                  "dynamic": true,
+                                  "options": [
+                                    {
+                                      "label": "Pendiente",
+                                      "value": "Pendiente"
+                                    },
+                                    {
+                                      "label": "Procesado IA",
+                                      "value": "Procesado IA"
+                                    },
+                                    {
+                                      "label": "Pendiente HITL",
+                                      "value": "Pendiente HITL"
+                                    },
+                                    {
+                                      "label": "Aprobado",
+                                      "value": "Aprobado"
+                                    },
+                                    {
+                                      "label": "Rechazado",
+                                      "value": "Rechazado"
+                                    },
+                                    {
+                                      "label": "Error",
+                                      "value": "Error"
+                                    },
+                                    {
+                                      "label": "No corresponde",
+                                      "value": "No corresponde"
+                                    },
+                                    {
+                                      "label": "Datos incompletos",
+                                      "value": "Datos incompletos"
+                                    }
+                                  ],
+                                  "validate": false
+                                },
+                                "type": "array",
+                                "label": "Estado"
+                              },
+                              {
+                                "name": "fld4k1o5Ld9JtLarT",
+                                "type": "text",
+                                "label": "Es requerimiento?"
+                              },
+                              {
+                                "name": "fld4lvSGeyVjS2HV2",
+                                "type": "text",
+                                "label": "Requerimiento Completo"
+                              },
+                              {
+                                "name": "fldX5tuO4eebLcC52",
+                                "spec": {
+                                  "mode": "edit",
+                                  "name": "value",
+                                  "type": "select",
+                                  "label": "Value",
+                                  "dynamic": true,
+                                  "options": [
+                                    {
+                                      "label": "Alta",
+                                      "value": "Alta"
+                                    },
+                                    {
+                                      "label": "Media",
+                                      "value": "Media"
+                                    },
+                                    {
+                                      "label": "Baja",
+                                      "value": "Baja"
+                                    }
+                                  ],
+                                  "validate": false
+                                },
+                                "type": "array",
+                                "label": "Prioridad IA"
+                              },
+                              {
+                                "name": "fldcZoM06UnGd8W3m",
+                                "type": "text",
+                                "label": "User Story"
+                              },
+                              {
+                                "name": "fldHzd9alExtCwNx5",
+                                "type": "text",
+                                "label": "Criterios de Aceptación"
+                              },
+                              {
+                                "name": "fld62Nx8YJpDxyhkj",
+                                "type": "text",
+                                "label": "Datos faltantes"
+                              },
+                              {
+                                "name": "fldLiykMBZezikcwu",
+                                "type": "text",
+                                "label": "Aprobado"
+                              }
+                            ],
+                            "type": "collection",
+                            "label": "Record"
+                          }
+                        ],
+                        "interface": [
+                          {
+                            "name": "id",
+                            "type": "text",
+                            "label": "ID"
+                          },
+                          {
+                            "name": "createdTime",
+                            "type": "date",
+                            "label": "Created Time"
+                          },
+                          {
+                            "name": "ID Requerimiento",
+                            "type": "number",
+                            "label": "ID Requerimiento"
+                          },
+                          {
+                            "name": "Fecha de recepción",
+                            "time": false,
+                            "type": "date",
+                            "label": "Fecha de recepción"
+                          },
+                          {
+                            "name": "Remitente",
+                            "type": "text",
+                            "label": "Remitente"
+                          },
+                          {
+                            "name": "Asunto",
+                            "type": "text",
+                            "label": "Asunto"
+                          },
+                          {
+                            "name": "Mensaje Original",
+                            "type": "text",
+                            "label": "Mensaje Original",
+                            "multiline": true
+                          },
+                          {
+                            "name": "Estado",
+                            "type": "array",
+                            "label": "Estado",
+                            "dynamic": true,
+                            "editable": true
+                          },
+                          {
+                            "name": "Es requerimiento?",
+                            "type": "text",
+                            "label": "Es requerimiento?"
+                          },
+                          {
+                            "name": "Requerimiento Completo",
+                            "type": "text",
+                            "label": "Requerimiento Completo"
+                          },
+                          {
+                            "name": "Prioridad IA",
+                            "type": "array",
+                            "label": "Prioridad IA",
+                            "dynamic": true,
+                            "editable": true
+                          },
+                          {
+                            "name": "User Story",
+                            "type": "text",
+                            "label": "User Story",
+                            "multiline": true
+                          },
+                          {
+                            "name": "Criterios de Aceptación",
+                            "type": "text",
+                            "label": "Criterios de Aceptación",
+                            "multiline": true
+                          },
+                          {
+                            "name": "Datos faltantes",
+                            "type": "text",
+                            "label": "Datos faltantes",
+                            "multiline": true
+                          },
+                          {
+                            "name": "Aprobado",
+                            "type": "text",
+                            "label": "Aprobado"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": 31,
+                      "module": "google-email:sendAnEmail",
+                      "version": 4,
+                      "parameters": {
+                        "__IMTCONN__": 0
+                      },
+                      "filter": {
+                        "name": "Only continue when mapped value exists",
+                        "conditions": [
+                          [
+                            {
+                              "a": "{{30.Remitente}}",
+                              "o": "exist"
+                            }
+                          ]
+                        ]
+                      },
+                      "mapper": {
+                        "to": [
+                          "{{30.Remitente}}"
+                        ],
+                        "content": "<div style=\"font-family: Arial, sans-serif; font-size: 14px; line-height: 1.6;\">\r\n\r\n<h2>❌ Requerimiento rechazado</h2>\r\n\r\n<p>Hola,</p>\r\n\r\n<p>\r\nTu requerimiento <strong>\"{{30.Asunto}}\"</strong> fue analizado por nuestro sistema de IA y revisado por el responsable del proceso.\r\n</p>\r\n\r\n<p>\r\n<strong>Estado:</strong> RECHAZADO<br>\r\n<strong>Prioridad:</strong> {{30.`Prioridad IA`}}\r\n</p>\r\n\r\n<p>\r\nEl requerimiento no continuará con el proceso en esta instancia.\r\nLa decisión quedó registrada para garantizar su trazabilidad.\r\n</p>\r\n\r\n<p>\r\nSaludos,<br>\r\n<strong>ReqFlow AI</strong>\r\n</p>\r\n\r\n</div>",
+                        "subject": " Requerimiento rechazado: ID Nr. {{4.`ID Requerimiento`}}",
+                        "bodyType": "rawHtml"
+                      },
+                      "metadata": {
+                        "designer": {
+                          "x": 3148,
+                          "y": -153
+                        },
+                        "restore": {
+                          "expect": {
+                            "cc": {
+                              "mode": "chose"
+                            },
+                            "to": {
+                              "mode": "chose",
+                              "items": [
+                                null
+                              ]
+                            },
+                            "bcc": {
+                              "mode": "chose"
+                            },
+                            "from": {
+                              "mode": "chose",
+                              "label": "Empty"
+                            },
+                            "bodyType": {
+                              "label": "Raw HTML"
+                            },
+                            "attachments": {
+                              "mode": "chose"
+                            },
+                            "emailHeaders": {
+                              "mode": "chose"
+                            }
+                          },
+                          "parameters": {
+                            "__IMTCONN__": {
+                              "data": {
+                                "scoped": "true",
+                                "connection": "google-email"
+                              },
+                              "label": "Gmail connection (usuario@example.com)"
+                            }
+                          }
+                        },
+                        "parameters": [
+                          {
+                            "name": "__IMTCONN__",
+                            "type": "account:google-email",
+                            "label": "Connection",
+                            "required": true
+                          }
+                        ],
+                        "expect": [
+                          {
+                            "name": "to",
+                            "spec": {
+                              "name": "value",
+                              "type": "email",
+                              "label": "Recipient email address",
+                              "required": true,
+                              "validate": true
+                            },
+                            "type": "array",
+                            "label": "To",
+                            "required": true
+                          },
+                          {
+                            "name": "subject",
+                            "type": "text",
+                            "label": "Subject"
+                          },
+                          {
+                            "name": "bodyType",
+                            "type": "select",
+                            "label": "Body type",
+                            "required": true,
+                            "validate": {
+                              "enum": [
+                                "rawHtml",
+                                "collection"
+                              ]
+                            }
+                          },
+                          {
+                            "name": "attachments",
+                            "spec": {
+                              "name": "value",
+                              "spec": [
+                                {
+                                  "name": "filename",
+                                  "type": "filename",
+                                  "label": "File name",
+                                  "required": true,
+                                  "semantic": "file:name"
+                                },
+                                {
+                                  "name": "data",
+                                  "type": "buffer",
+                                  "label": "Data",
+                                  "required": true,
+                                  "semantic": "file:data"
+                                }
+                              ],
+                              "type": "collection",
+                              "label": "Attachment"
+                            },
+                            "type": "array",
+                            "label": "Attachments"
+                          },
+                          {
+                            "name": "from",
+                            "type": "select",
+                            "label": "From"
+                          },
+                          {
+                            "name": "cc",
+                            "spec": {
+                              "name": "value",
+                              "type": "email",
+                              "label": "Recipient email address"
+                            },
+                            "type": "array",
+                            "label": "CC recipients"
+                          },
+                          {
+                            "name": "bcc",
+                            "spec": {
+                              "name": "value",
+                              "type": "email",
+                              "label": "Recipient email address"
+                            },
+                            "type": "array",
+                            "label": "BCC recipients"
+                          },
+                          {
+                            "name": "emailHeaders",
+                            "spec": {
+                              "name": "value",
+                              "spec": [
+                                {
+                                  "name": "key",
+                                  "type": "text",
+                                  "label": "Key",
+                                  "required": true
+                                },
+                                {
+                                  "name": "value",
+                                  "type": "text",
+                                  "label": "Value"
+                                }
+                              ],
+                              "type": "collection",
+                              "label": "Email header"
+                            },
+                            "type": "array",
+                            "label": "Additional email headers"
+                          },
+                          {
+                            "name": "content",
+                            "type": "text",
+                            "label": "Content"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "flow": [
+            {
+              "id": 12,
+              "module": "airtable:ActionUpdateRecords",
+              "version": 3,
+              "parameters": {
+                "__IMTCONN__": 0
+              },
+              "filter": {
+                "name": "Req. Incompleto",
+                "conditions": [
+                  [
+                    {
+                      "a": "{{7.`Es requerimiento?`}}",
+                      "b": "true",
+                      "o": "text:equal"
+                    },
+                    {
+                      "a": "{{7.`Requerimiento Completo`}}",
+                      "b": "false",
+                      "o": "text:equal"
+                    }
+                  ]
+                ]
+              },
+              "mapper": {
+                "id": "{{4.id}}",
+                "base": "__AIRTABLE_BASE_ID__",
+                "table": "__AIRTABLE_TABLE_ID__",
+                "record": {
+                  "fld4oatfkYttuSvXk": [
+                    "Datos incompletos"
+                  ],
+                  "fldHzd9alExtCwNx5": "Sin Datos",
+                  "fldcZoM06UnGd8W3m": "Sin Datos"
+                },
+                "typecast": false,
+                "useColumnId": false
+              },
+              "metadata": {
+                "designer": {
+                  "x": 1626,
+                  "y": -6
+                },
+                "restore": {
+                  "expect": {
+                    "base": {
+                      "label": "ReqFlow AI – Requerimientos Inteligentes"
+                    },
+                    "table": {
+                      "label": "Requerimientos"
+                    },
+                    "record": {
+                      "nested": {
+                        "fld4oatfkYttuSvXk": {
+                          "mode": "chose",
+                          "items": [
+                            {
+                              "value": {
+                                "mode": "chose",
+                                "label": "Datos incompletos"
+                              }
+                            }
+                          ]
+                        },
+                        "fldX5tuO4eebLcC52": {
+                          "mode": "chose"
+                        }
+                      }
+                    },
+                    "typecast": {
+                      "mode": "chose"
+                    },
+                    "useColumnId": {
+                      "mode": "chose"
+                    }
+                  },
+                  "parameters": {
+                    "__IMTCONN__": {
+                      "data": {
+                        "scoped": "true",
+                        "connection": "airtable3"
+                      },
+                      "label": "Airtable OAuth connection (User ID: usr_REDACTED)"
+                    }
+                  }
+                },
+                "parameters": [
+                  {
+                    "name": "__IMTCONN__",
+                    "type": "account:airtable3,airtable2",
+                    "label": "Connection",
+                    "required": true
+                  }
+                ],
+                "expect": [
+                  {
+                    "name": "base",
+                    "type": "select",
+                    "label": "Base",
+                    "required": true
+                  },
+                  {
+                    "name": "typecast",
+                    "type": "boolean",
+                    "label": "Smart links",
+                    "required": true
+                  },
+                  {
+                    "name": "useColumnId",
+                    "type": "boolean",
+                    "label": "Use Column ID",
+                    "required": true
+                  },
+                  {
+                    "name": "table",
+                    "type": "select",
+                    "label": "Table",
+                    "required": true
+                  },
+                  {
+                    "name": "id",
+                    "type": "text",
+                    "label": "Record ID",
+                    "required": true
+                  },
+                  {
+                    "name": "record",
+                    "spec": [
+                      {
+                        "name": "fldms4B9vJctt3Tpp",
+                        "time": false,
+                        "type": "date",
+                        "label": "Fecha de recepción"
+                      },
+                      {
+                        "name": "fldOSJfv0CJ2FP72i",
+                        "type": "text",
+                        "label": "Remitente"
+                      },
+                      {
+                        "name": "fldXEsU0AzRw8k7oR",
+                        "type": "text",
+                        "label": "Asunto"
+                      },
+                      {
+                        "name": "fld975JFFw4rhrHRQ",
+                        "type": "text",
+                        "label": "Mensaje Original"
+                      },
+                      {
+                        "name": "fld4oatfkYttuSvXk",
+                        "spec": {
+                          "mode": "edit",
+                          "name": "value",
+                          "type": "select",
+                          "label": "Value",
+                          "dynamic": true,
+                          "options": [
+                            {
+                              "label": "Pendiente",
+                              "value": "Pendiente"
+                            },
+                            {
+                              "label": "Procesado IA",
+                              "value": "Procesado IA"
+                            },
+                            {
+                              "label": "Pendiente HITL",
+                              "value": "Pendiente HITL"
+                            },
+                            {
+                              "label": "Aprobado",
+                              "value": "Aprobado"
+                            },
+                            {
+                              "label": "Rechazado",
+                              "value": "Rechazado"
+                            },
+                            {
+                              "label": "Error",
+                              "value": "Error"
+                            },
+                            {
+                              "label": "No corresponde",
+                              "value": "No corresponde"
+                            },
+                            {
+                              "label": "Datos incompletos",
+                              "value": "Datos incompletos"
+                            }
+                          ],
+                          "validate": false
+                        },
+                        "type": "array",
+                        "label": "Estado"
+                      },
+                      {
+                        "name": "fld4k1o5Ld9JtLarT",
+                        "type": "text",
+                        "label": "Es requerimiento?"
+                      },
+                      {
+                        "name": "fld4lvSGeyVjS2HV2",
+                        "type": "text",
+                        "label": "Requerimiento Completo"
+                      },
+                      {
+                        "name": "fldX5tuO4eebLcC52",
+                        "spec": {
+                          "mode": "edit",
+                          "name": "value",
+                          "type": "select",
+                          "label": "Value",
+                          "dynamic": true,
+                          "options": [
+                            {
+                              "label": "Alta",
+                              "value": "Alta"
+                            },
+                            {
+                              "label": "Media",
+                              "value": "Media"
+                            },
+                            {
+                              "label": "Baja",
+                              "value": "Baja"
+                            }
+                          ],
+                          "validate": false
+                        },
+                        "type": "array",
+                        "label": "Prioridad IA"
+                      },
+                      {
+                        "name": "fldcZoM06UnGd8W3m",
+                        "type": "text",
+                        "label": "User Story"
+                      },
+                      {
+                        "name": "fldHzd9alExtCwNx5",
+                        "type": "text",
+                        "label": "Criterios de Aceptación"
+                      },
+                      {
+                        "name": "fld62Nx8YJpDxyhkj",
+                        "type": "text",
+                        "label": "Datos faltantes"
+                      },
+                      {
+                        "name": "fldLiykMBZezikcwu",
+                        "type": "text",
+                        "label": "Aprobado"
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "Record"
+                  }
+                ],
+                "interface": [
+                  {
+                    "name": "id",
+                    "type": "text",
+                    "label": "ID"
+                  },
+                  {
+                    "name": "createdTime",
+                    "type": "date",
+                    "label": "Created Time"
+                  },
+                  {
+                    "name": "ID Requerimiento",
+                    "type": "number",
+                    "label": "ID Requerimiento"
+                  },
+                  {
+                    "name": "Fecha de recepción",
+                    "time": false,
+                    "type": "date",
+                    "label": "Fecha de recepción"
+                  },
+                  {
+                    "name": "Remitente",
+                    "type": "text",
+                    "label": "Remitente"
+                  },
+                  {
+                    "name": "Asunto",
+                    "type": "text",
+                    "label": "Asunto"
+                  },
+                  {
+                    "name": "Mensaje Original",
+                    "type": "text",
+                    "label": "Mensaje Original",
+                    "multiline": true
+                  },
+                  {
+                    "name": "Estado",
+                    "type": "array",
+                    "label": "Estado",
+                    "dynamic": true,
+                    "editable": true
+                  },
+                  {
+                    "name": "Es requerimiento?",
+                    "type": "text",
+                    "label": "Es requerimiento?"
+                  },
+                  {
+                    "name": "Requerimiento Completo",
+                    "type": "text",
+                    "label": "Requerimiento Completo"
+                  },
+                  {
+                    "name": "Prioridad IA",
+                    "type": "array",
+                    "label": "Prioridad IA",
+                    "dynamic": true,
+                    "editable": true
+                  },
+                  {
+                    "name": "User Story",
+                    "type": "text",
+                    "label": "User Story",
+                    "multiline": true
+                  },
+                  {
+                    "name": "Criterios de Aceptación",
+                    "type": "text",
+                    "label": "Criterios de Aceptación",
+                    "multiline": true
+                  },
+                  {
+                    "name": "Datos faltantes",
+                    "type": "text",
+                    "label": "Datos faltantes",
+                    "multiline": true
+                  },
+                  {
+                    "name": "Aprobado",
+                    "type": "text",
+                    "label": "Aprobado"
+                  }
+                ]
+              }
+            },
+            {
+              "id": 13,
+              "module": "google-email:sendAnEmail",
+              "version": 4,
+              "parameters": {
+                "__IMTCONN__": 0
+              },
+              "filter": {
+                "name": "Remitente",
+                "conditions": [
+                  [
+                    {
+                      "a": "{{12.Remitente}}",
+                      "o": "exist"
+                    }
+                  ]
+                ]
+              },
+              "mapper": {
+                "to": [
+                  "{{4.Remitente}}"
+                ],
+                "content": "<div style=\"font-family: Arial, sans-serif; font-size: 14px; line-height: 1.6;\">\r\n\r\n<h2>⚠️ Requerimiento incompleto</h2>\r\n\r\n<p>Hola,</p>\r\n\r\n<p>\r\nAnalizamos tu requerimiento <strong>\"{{12.Asunto}}\"</strong>, pero necesitamos información adicional para poder continuar con el proceso.\r\n</p>\r\n\r\n<p><strong>Información faltante:</strong></p>\r\n\r\n<p>{{12.`Datos faltantes`}}</p>\r\n\r\n<p>\r\nPor favor, completá la información indicada para que el requerimiento pueda ser evaluado nuevamente.\r\n</p>\r\n\r\n<p>\r\nSaludos,<br>\r\n<strong>ReqFlow AI</strong>\r\n</p>\r\n\r\n</div>",
+                "subject": "Solicitud: Datos incompletos",
+                "bodyType": "rawHtml"
+              },
+              "metadata": {
+                "designer": {
+                  "x": 2006,
+                  "y": -4
+                },
+                "restore": {
+                  "expect": {
+                    "cc": {
+                      "mode": "chose"
+                    },
+                    "to": {
+                      "mode": "chose",
+                      "items": [
+                        null
+                      ]
+                    },
+                    "bcc": {
+                      "mode": "chose"
+                    },
+                    "from": {
+                      "mode": "chose"
+                    },
+                    "bodyType": {
+                      "label": "Raw HTML"
+                    },
+                    "attachments": {
+                      "mode": "chose"
+                    },
+                    "emailHeaders": {
+                      "mode": "chose"
+                    }
+                  },
+                  "parameters": {
+                    "__IMTCONN__": {
+                      "data": {
+                        "scoped": "true",
+                        "connection": "google-email"
+                      },
+                      "label": "Gmail connection (usuario@example.com)"
+                    }
+                  }
+                },
+                "parameters": [
+                  {
+                    "name": "__IMTCONN__",
+                    "type": "account:google-email",
+                    "label": "Connection",
+                    "required": true
+                  }
+                ],
+                "expect": [
+                  {
+                    "name": "to",
+                    "spec": {
+                      "name": "value",
+                      "type": "email",
+                      "label": "Recipient email address",
+                      "required": true,
+                      "validate": true
+                    },
+                    "type": "array",
+                    "label": "To",
+                    "required": true
+                  },
+                  {
+                    "name": "subject",
+                    "type": "text",
+                    "label": "Subject"
+                  },
+                  {
+                    "name": "bodyType",
+                    "type": "select",
+                    "label": "Body type",
+                    "required": true,
+                    "validate": {
+                      "enum": [
+                        "rawHtml",
+                        "collection"
+                      ]
+                    }
+                  },
+                  {
+                    "name": "attachments",
+                    "spec": {
+                      "name": "value",
+                      "spec": [
+                        {
+                          "name": "filename",
+                          "type": "filename",
+                          "label": "File name",
+                          "required": true,
+                          "semantic": "file:name"
+                        },
+                        {
+                          "name": "data",
+                          "type": "buffer",
+                          "label": "Data",
+                          "required": true,
+                          "semantic": "file:data"
+                        }
+                      ],
+                      "type": "collection",
+                      "label": "Attachment"
+                    },
+                    "type": "array",
+                    "label": "Attachments"
+                  },
+                  {
+                    "name": "from",
+                    "type": "select",
+                    "label": "From"
+                  },
+                  {
+                    "name": "cc",
+                    "spec": {
+                      "name": "value",
+                      "type": "email",
+                      "label": "Recipient email address"
+                    },
+                    "type": "array",
+                    "label": "CC recipients"
+                  },
+                  {
+                    "name": "bcc",
+                    "spec": {
+                      "name": "value",
+                      "type": "email",
+                      "label": "Recipient email address"
+                    },
+                    "type": "array",
+                    "label": "BCC recipients"
+                  },
+                  {
+                    "name": "emailHeaders",
+                    "spec": {
+                      "name": "value",
+                      "spec": [
+                        {
+                          "name": "key",
+                          "type": "text",
+                          "label": "Key",
+                          "required": true
+                        },
+                        {
+                          "name": "value",
+                          "type": "text",
+                          "label": "Value"
+                        }
+                      ],
+                      "type": "collection",
+                      "label": "Email header"
+                    },
+                    "type": "array",
+                    "label": "Additional email headers"
+                  },
+                  {
+                    "name": "content",
+                    "type": "text",
+                    "label": "Content"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "flow": [
+            {
+              "id": 11,
+              "module": "airtable:ActionUpdateRecords",
+              "version": 3,
+              "parameters": {
+                "__IMTCONN__": 0
+              },
+              "filter": {
+                "name": "No Corresponde",
+                "conditions": [
+                  [
+                    {
+                      "a": "{{7.`Es requerimiento?`}}",
+                      "b": "false",
+                      "o": "text:equal"
+                    }
+                  ]
+                ]
+              },
+              "mapper": {
+                "id": "{{4.id}}",
+                "base": "__AIRTABLE_BASE_ID__",
+                "table": "__AIRTABLE_TABLE_ID__",
+                "record": {
+                  "fld4oatfkYttuSvXk": [
+                    "No corresponde"
+                  ]
+                },
+                "typecast": false,
+                "useColumnId": false
+              },
+              "metadata": {
+                "designer": {
+                  "x": 1619,
+                  "y": 293
+                },
+                "restore": {
+                  "expect": {
+                    "base": {
+                      "label": "ReqFlow AI – Requerimientos Inteligentes"
+                    },
+                    "table": {
+                      "label": "Requerimientos"
+                    },
+                    "record": {
+                      "nested": {
+                        "fld4k1o5Ld9JtLarT": {
+                          "mode": "chose"
+                        },
+                        "fld4lvSGeyVjS2HV2": {
+                          "mode": "chose"
+                        },
+                        "fld4oatfkYttuSvXk": {
+                          "mode": "chose",
+                          "items": [
+                            {
+                              "value": {
+                                "mode": "chose",
+                                "label": "No corresponde"
+                              }
+                            }
+                          ]
+                        },
+                        "fld75oZtKz0QJO87m": {
+                          "mode": "chose"
+                        },
+                        "fldLiykMBZezikcwu": {
+                          "mode": "chose"
+                        },
+                        "fldQF8oj6G7Al2PYg": {
+                          "mode": "chose"
+                        },
+                        "fldX5tuO4eebLcC52": {
+                          "mode": "chose"
+                        }
+                      }
+                    },
+                    "typecast": {
+                      "mode": "chose"
+                    },
+                    "useColumnId": {
+                      "mode": "chose"
+                    }
+                  },
+                  "parameters": {
+                    "__IMTCONN__": {
+                      "data": {
+                        "scoped": "true",
+                        "connection": "airtable3"
+                      },
+                      "label": "Airtable OAuth connection (User ID: usr_REDACTED)"
+                    }
+                  }
+                },
+                "parameters": [
+                  {
+                    "name": "__IMTCONN__",
+                    "type": "account:airtable3,airtable2",
+                    "label": "Connection",
+                    "required": true
+                  }
+                ],
+                "expect": [
+                  {
+                    "name": "base",
+                    "type": "select",
+                    "label": "Base",
+                    "required": true
+                  },
+                  {
+                    "name": "typecast",
+                    "type": "boolean",
+                    "label": "Smart links",
+                    "required": true
+                  },
+                  {
+                    "name": "useColumnId",
+                    "type": "boolean",
+                    "label": "Use Column ID",
+                    "required": true
+                  },
+                  {
+                    "name": "table",
+                    "type": "select",
+                    "label": "Table",
+                    "required": true
+                  },
+                  {
+                    "name": "id",
+                    "type": "text",
+                    "label": "Record ID",
+                    "required": true
+                  },
+                  {
+                    "name": "record",
+                    "spec": [
+                      {
+                        "name": "fldms4B9vJctt3Tpp",
+                        "time": false,
+                        "type": "date",
+                        "label": "Fecha de recepción"
+                      },
+                      {
+                        "name": "fldOSJfv0CJ2FP72i",
+                        "type": "text",
+                        "label": "Remitente"
+                      },
+                      {
+                        "name": "fldXEsU0AzRw8k7oR",
+                        "type": "text",
+                        "label": "Asunto"
+                      },
+                      {
+                        "name": "fld975JFFw4rhrHRQ",
+                        "type": "text",
+                        "label": "Mensaje Original"
+                      },
+                      {
+                        "name": "fld4oatfkYttuSvXk",
+                        "spec": {
+                          "mode": "edit",
+                          "name": "value",
+                          "type": "select",
+                          "label": "Value",
+                          "dynamic": true,
+                          "options": [
+                            {
+                              "label": "Pendiente",
+                              "value": "Pendiente"
+                            },
+                            {
+                              "label": "Procesado IA",
+                              "value": "Procesado IA"
+                            },
+                            {
+                              "label": "Pendiente HITL",
+                              "value": "Pendiente HITL"
+                            },
+                            {
+                              "label": "Aprobado",
+                              "value": "Aprobado"
+                            },
+                            {
+                              "label": "Rechazado",
+                              "value": "Rechazado"
+                            },
+                            {
+                              "label": "Error",
+                              "value": "Error"
+                            },
+                            {
+                              "label": "No corresponde",
+                              "value": "No corresponde"
+                            },
+                            {
+                              "label": "Datos incompletos",
+                              "value": "Datos incompletos"
+                            }
+                          ],
+                          "validate": false
+                        },
+                        "type": "array",
+                        "label": "Estado"
+                      },
+                      {
+                        "name": "fld4k1o5Ld9JtLarT",
+                        "type": "boolean",
+                        "label": "Es requerimiento?"
+                      },
+                      {
+                        "name": "fld4lvSGeyVjS2HV2",
+                        "type": "boolean",
+                        "label": "Requerimiento Completo"
+                      },
+                      {
+                        "name": "fldX5tuO4eebLcC52",
+                        "spec": {
+                          "mode": "edit",
+                          "name": "value",
+                          "type": "select",
+                          "label": "Value",
+                          "dynamic": true,
+                          "options": [
+                            {
+                              "label": "Alta",
+                              "value": "Alta"
+                            },
+                            {
+                              "label": "Media",
+                              "value": "Media"
+                            },
+                            {
+                              "label": "Baja",
+                              "value": "Baja"
+                            }
+                          ],
+                          "validate": false
+                        },
+                        "type": "array",
+                        "label": "Prioridad IA"
+                      },
+                      {
+                        "name": "fldcZoM06UnGd8W3m",
+                        "type": "text",
+                        "label": "User Story"
+                      },
+                      {
+                        "name": "fldHzd9alExtCwNx5",
+                        "type": "text",
+                        "label": "Criterios de Aceptación"
+                      },
+                      {
+                        "name": "fld62Nx8YJpDxyhkj",
+                        "type": "text",
+                        "label": "Datos faltantes"
+                      },
+                      {
+                        "name": "fldLiykMBZezikcwu",
+                        "type": "boolean",
+                        "label": "Aprobado"
+                      },
+                      {
+                        "name": "fld75oZtKz0QJO87m",
+                        "spec": {
+                          "name": "value",
+                          "label": "Record ID"
+                        },
+                        "type": "array",
+                        "label": "Áreas"
+                      },
+                      {
+                        "name": "fldQF8oj6G7Al2PYg",
+                        "spec": {
+                          "name": "value",
+                          "label": "Record ID"
+                        },
+                        "type": "array",
+                        "label": "Logs"
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "Record"
+                  }
+                ],
+                "interface": [
+                  {
+                    "name": "id",
+                    "type": "text",
+                    "label": "ID"
+                  },
+                  {
+                    "name": "createdTime",
+                    "type": "date",
+                    "label": "Created Time"
+                  },
+                  {
+                    "name": "ID Requerimiento",
+                    "type": "number",
+                    "label": "ID Requerimiento"
+                  },
+                  {
+                    "name": "Fecha de recepción",
+                    "time": false,
+                    "type": "date",
+                    "label": "Fecha de recepción"
+                  },
+                  {
+                    "name": "Remitente",
+                    "type": "text",
+                    "label": "Remitente"
+                  },
+                  {
+                    "name": "Asunto",
+                    "type": "text",
+                    "label": "Asunto"
+                  },
+                  {
+                    "name": "Mensaje Original",
+                    "type": "text",
+                    "label": "Mensaje Original",
+                    "multiline": true
+                  },
+                  {
+                    "name": "Estado",
+                    "type": "array",
+                    "label": "Estado",
+                    "dynamic": true,
+                    "editable": true
+                  },
+                  {
+                    "name": "Es requerimiento?",
+                    "type": "boolean",
+                    "label": "Es requerimiento?"
+                  },
+                  {
+                    "name": "Requerimiento Completo",
+                    "type": "boolean",
+                    "label": "Requerimiento Completo"
+                  },
+                  {
+                    "name": "Prioridad IA",
+                    "type": "array",
+                    "label": "Prioridad IA",
+                    "dynamic": true,
+                    "editable": true
+                  },
+                  {
+                    "name": "User Story",
+                    "type": "text",
+                    "label": "User Story",
+                    "multiline": true
+                  },
+                  {
+                    "name": "Criterios de Aceptación",
+                    "type": "text",
+                    "label": "Criterios de Aceptación",
+                    "multiline": true
+                  },
+                  {
+                    "name": "Datos faltantes",
+                    "type": "text",
+                    "label": "Datos faltantes",
+                    "multiline": true
+                  },
+                  {
+                    "name": "Aprobado",
+                    "type": "boolean",
+                    "label": "Aprobado"
+                  },
+                  {
+                    "name": "Áreas",
+                    "spec": {
+                      "label": "Record ID"
+                    },
+                    "type": "array",
+                    "label": "Áreas"
+                  },
+                  {
+                    "name": "Logs",
+                    "spec": {
+                      "label": "Record ID"
+                    },
+                    "type": "array",
+                    "label": "Logs"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "instant": false,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "autoCommitTriggerLast": false,
+      "sequential": true,
+      "slots": null,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": true,
+      "freshVariables": false
+    },
+    "designer": {
+      "orphans": []
+    },
+    "zone": "us2.make.com",
+    "notes": []
+  }
+}
